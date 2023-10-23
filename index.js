@@ -12,6 +12,9 @@ body.addEventListener('keydown', (event) => {
     } else if(event.code == 'Backspace' && guess.length > 0){
         guess.pop()
         display_guessed_word()
+    } else if(event.code == 'Enter' && guess.length == 5){
+        // some function for calculating the guess
+        return
     }
 })
 
