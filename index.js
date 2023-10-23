@@ -60,9 +60,9 @@ function display_guessed_word(animate=false){
 
     for(let box in current_row){
         if(box < guess.length){
-            boxes[box].classList.add('full')
+            current_row[box].classList.add('full')
         } else {
-            boxes[box].classList.remove('full')
+            current_row[box].classList.remove('full')
         }
     }
 }
