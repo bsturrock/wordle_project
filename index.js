@@ -25,9 +25,7 @@ body.addEventListener('keydown', (event) => {
 })
 
 document.querySelectorAll('.letter').forEach((ele)=>{ // add event listener on all boxes to remove animation class after animation has ended
-    ele.addEventListener('animationend', (event)=>{
-        remove_all_animation_classes()
-    })
+    ele.addEventListener('animationend', remove_all_animation_classes)
 })
 
 function remove_all_animation_classes(){ // function to remove animation class
