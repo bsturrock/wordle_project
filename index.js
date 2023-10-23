@@ -1,9 +1,15 @@
 
 
 const body = document.querySelector('body') // body element of DOM
-const guess = []
-let round = 1
-
+const guess = [] // current word the user is guessing (all letters are individual array elements)
+let round = 1 // what row/guess the user is currently on
+let current_row = [ // all boxes in the current row
+    document.querySelector(`#one_${round}`),
+    document.querySelector(`#two_${round}`),
+    document.querySelector(`#three_${round}`),
+    document.querySelector(`#four_${round}`),
+    document.querySelector(`#five_${round}`)
+]
 
 body.addEventListener('keydown', (event) => {
     if(event.code.slice(0,3) == 'Key' && guess.length < 5) { // if keydown is between A and Z keys and word isn't 5 letters
@@ -53,19 +59,22 @@ function display_guessed_word(animate=false){
 
 
     //add the full class (black outline and font color) for boxes that have a letter in them and remove for empty
-    const boxes = [
-        document.querySelector(`#one_${round}`),
-        document.querySelector(`#two_${round}`),
-        document.querySelector(`#three_${round}`),
-        document.querySelector(`#four_${round}`),
-        document.querySelector(`#five_${round}`)
-    ]
 
-    for(let box in boxes){
+    for(let box in current_row){
         if(box < guess.length){
             boxes[box].classList.add('full')
         } else {
             boxes[box].classList.remove('full')
         }
     }
+}
+
+function update_current_row(){
+    return [
+        document.querySelector(`#one_${round}`),
+        document.querySelector(`#two_${round}`),
+        document.querySelector(`#three_${round}`),
+        document.querySelector(`#four_${round}`),
+        document.querySelector(`#five_${round}`)
+    ]
 }
