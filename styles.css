@@ -9,13 +9,17 @@
 .letter {
     width: 80px;
     height: 80px;
-    border: 1px solid rgb(150,150,150);
-    color: rgb(150,150,150);
+    border: 2px solid rgb(150,150,150);
+    color: rgb(50, 50, 50);
     text-align: center;
     margin: 5px;
     font-family: "Menlo";
     font-size: 70px;
     text-transform: uppercase;
+}
+
+.full {
+    border: 2px solid rgb(50,50,50);
 }
 
 .words {
@@ -31,4 +35,16 @@
     flex: 4;
     justify-content: center;
     align-items: center;
+}
+
+.bounce {
+    animation-name: bounce;
+    animation-duration: .15s;
+    animation-iteration-count: 1;
+}
+
+@keyframes bounce {
+    0% {transform: scale(1,1)}
+    75% {transform: scale(1.1, 1.1)}
+    100% {transform: scale(1,1)}
 }
