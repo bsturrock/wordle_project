@@ -6,10 +6,10 @@ const guess = []
 const round = 1 // basically which attempt the user is on (from 1 to 6)
 
 body.addEventListener('keydown', (event) => {
-    if(event.keyCode >= 65 && event.keyCode <= 90 && guess.length < 5) { // if keydown is between A and Z keys and word isn't 5 letters
+    if(event.code.slice(0,3) == 'Key' && guess.length < 5) { // if keydown is between A and Z keys and word isn't 5 letters
         guess.push(event.key)
         display_guessed_word()
-    } else if(event.key == 'Backspace' && guess.length > 0){
+    } else if(event.code == 'Backspace' && guess.length > 0){
         guess.pop()
         display_guessed_word()
     }
