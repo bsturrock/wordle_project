@@ -12,6 +12,7 @@ let current_row = [
 ];
 
 body.addEventListener("keydown", (event) => {
+    console.log(event.code)
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // if keydown is between A and Z keys and word isn't 5 letters
         guess.push(event.key);
@@ -20,8 +21,8 @@ body.addEventListener("keydown", (event) => {
         guess.pop();
         display_guessed_word();
     } else if (event.code == "Enter" && guess.length == 5) {
-        // some function for calculating the guess
-        return;
+        calculate()
+        new_round()
     }
 });
 
@@ -29,6 +30,68 @@ document.querySelectorAll(".letter").forEach((ele) => {
     // add event listener on all boxes to remove animation class after animation has ended
     ele.addEventListener("animationend", remove_all_animation_classes);
 });
+
+
+function new_round(){
+    round++
+    current_row = update_current_row()
+    guess.length = 0
+}
+
+function calculate(){
+
+    const colors = []
+    let correct = 0
+
+    let target_letter_occurrences = letter_occurrences()
+    let greens = green_instances()
+
+
+// First loop to look for correct spots and letters not in the word
+    for(let index in guess){ 
+        if(!target_guess.includes(guess[index])){ // target word does not include letter
+            colors[index] = 'gray'
+        } else if(target_guess[index] == guess[index]){ // letter in right spot
+            colors[index] = 'green'
+            ++correct
+            ++greens[guess[index]]    
+        } else {
+            colors[index] = '' // placeholder for any letter not meeting these critera
+        }
+    }
+
+// Second loop to deal with incorrect positions / duplicate letters
+    for(let index in guess){
+        if(colors[index]!='green' && colors[index]!='gray'){
+            if(target_letter_occurrences[guess[index]] == greens[guess[index]]){
+                colors[index]='gray'
+            } else {
+                colors[index]= 'yellow'
+            }
+        }
+    }
+
+    current_row[0].classList.add(colors[0])
+    current_row[1].classList.add(colors[1])
+    current_row[2].classList.add(colors[2])
+    current_row[3].classList.add(colors[3])
+    current_row[4].classList.add(colors[4])
+
+}
+
+function green_instances(){
+    const instances = {}
+    for(let letter of guess){
+        instances[letter] = 0
+    }
+    return instances
+}
+
+function letter_occurrences(){
+    return target_guess.reduce((acc, curr)=>{
+        return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    },{})
+}
 
 function remove_all_animation_classes() {
     // function to remove animation class
@@ -128,5 +191,6 @@ function get_random_word(target_arry) {
 }
 
 get_random_word(target_guess);
+
 
 
