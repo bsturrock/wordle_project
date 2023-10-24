@@ -79,7 +79,7 @@ function calculate(){
 
 }
 
-function green_instances(){
+function green_instances(){ // initializes an object to track how many 'green' instances per letter there are
     const instances = {}
     for(let letter of guess){
         instances[letter] = 0
@@ -87,7 +87,7 @@ function green_instances(){
     return instances
 }
 
-function letter_occurrences(){
+function letter_occurrences(){ // creates an object that counts how many instances of each letter there is in the target word
     return target_guess.reduce((acc, curr)=>{
         return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
     },{})
