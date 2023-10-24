@@ -12,7 +12,7 @@ let current_row = [
 ];
 
 body.addEventListener("keydown", (event) => {
-    console.log(event.code)
+
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // if keydown is between A and Z keys and word isn't 5 letters
         guess.push(event.key);
