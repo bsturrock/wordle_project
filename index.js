@@ -1,6 +1,6 @@
 const body = document.querySelector("body"); // body element of DOM
 const guess = []; // current word the user is guessing (all letters are individual array elements)
-const target_guess = [];
+const target_guess = []; // current word the user is trying to guess (all letters are individual array elements)
 let round = 1; // what row/guess the user is currently on
 let current_row = [
     // all boxes in the current row
@@ -10,8 +10,7 @@ let current_row = [
     document.querySelector(`#four_${round}`),
     document.querySelector(`#five_${round}`),
 ];
-console.log(guess);
-console.log(target_guess)
+
 body.addEventListener("keydown", (event) => {
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // if keydown is between A and Z keys and word isn't 5 letters
@@ -107,10 +106,7 @@ function get_random_word(target_arry) {
     })
 
 
-
-
     //IF YOU WANT TO ADD THE WORD TO A LOCAL STORAGE AND DO SOMETHING WITH IT REPLACE THIS.
-
 
     // const stored_random_word = localStorage.getItem("randomWord"); // grabs the item that is set in
     // if (stored_random_word) {
