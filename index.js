@@ -1,6 +1,9 @@
 const body = document.querySelector("body"); // body element of DOM
 const guess = []; // current word the user is guessing (all letters are individual array elements)
 const target_guess = []; // current word the user is trying to guess (all letters are individual array elements)
+
+let ready_to_guess = true
+
 let round = 1; // what row/guess the user is currently on
 let current_row = [
     // all boxes in the current row
@@ -12,6 +15,7 @@ let current_row = [
 ];
 
 body.addEventListener("keydown", (event) => {
+    if(!ready_to_guess){return}
 
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // if keydown is between A and Z keys and word isn't 5 letters
@@ -46,7 +50,7 @@ function new_round(){
 }
 
 function calculate(){
-
+    ready_to_guess = false
     const colors = []
     let correct = 0
 
@@ -94,6 +98,9 @@ function calculate(){
         old_row[i].querySelector('span').classList.add('scored')
         console.log(old_row[i].querySelector('span'))
         console.log('adding anim to ' + i)
+        if(i==4){
+            ready_to_guess = true
+        }
     }
 
     let i=0;
