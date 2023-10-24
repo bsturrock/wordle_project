@@ -28,7 +28,7 @@
 
 .letter span {
     text-align: center;
-    font-family: "Menlo";
+    font-family: "Menlo", "Helvetica";
     font-size: 70px;
     text-transform: uppercase;
     margin: auto;
