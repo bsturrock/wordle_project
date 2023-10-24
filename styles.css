@@ -1,3 +1,14 @@
+
+* {
+    -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
 .word {
     display: flex;
     flex-direction: row;
@@ -47,4 +58,22 @@
     0% {transform: scale(1,1)}
     75% {transform: scale(1.1, 1.1)}
     100% {transform: scale(1,1)}
+}
+
+.green {
+    background-color: green !important;
+    color: white !important;
+    border: 2px solid green !important;
+}
+
+.yellow {
+    background-color: goldenrod !important;
+    color: white !important;
+    border: 2px solid goldenrod !important;
+}
+
+.gray {
+    background-color: rgb(60, 60, 60) !important;
+    color: white !important;
+    border: 2px solid rgb(60,60,60) !important;
 }
