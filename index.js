@@ -1,78 +1,132 @@
-
-
-const body = document.querySelector('body') // body element of DOM
-const guess = [] // current word the user is guessing (all letters are individual array elements)
-let round = 1 // what row/guess the user is currently on
-let current_row = [ // all boxes in the current row
+const body = document.querySelector("body"); // body element of DOM
+const guess = []; // current word the user is guessing (all letters are individual array elements)
+const target_guess = []; // current word the user is trying to guess (all letters are individual array elements)
+let round = 1; // what row/guess the user is currently on
+let current_row = [
+    // all boxes in the current row
     document.querySelector(`#one_${round}`),
     document.querySelector(`#two_${round}`),
     document.querySelector(`#three_${round}`),
     document.querySelector(`#four_${round}`),
-    document.querySelector(`#five_${round}`)
-]
+    document.querySelector(`#five_${round}`),
+];
 
-body.addEventListener('keydown', (event) => {
-    if(event.code.slice(0,3) == 'Key' && guess.length < 5) { // if keydown is between A and Z keys and word isn't 5 letters
-        guess.push(event.key)
-        display_guessed_word(true)
-    } else if(event.code == 'Backspace' && guess.length > 0){
-        guess.pop()
-        display_guessed_word()
-    } else if(event.code == 'Enter' && guess.length == 5){
+body.addEventListener("keydown", (event) => {
+    if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
+        // if keydown is between A and Z keys and word isn't 5 letters
+        guess.push(event.key);
+        display_guessed_word(true);
+    } else if (event.code == "Backspace" && guess.length > 0) {
+        guess.pop();
+        display_guessed_word();
+    } else if (event.code == "Enter" && guess.length == 5) {
         // some function for calculating the guess
-        return
+        return;
     }
-})
+});
 
-document.querySelectorAll('.letter').forEach((ele)=>{ // add event listener on all boxes to remove animation class after animation has ended
-    ele.addEventListener('animationend', remove_all_animation_classes)
-})
+document.querySelectorAll(".letter").forEach((ele) => {
+    // add event listener on all boxes to remove animation class after animation has ended
+    ele.addEventListener("animationend", remove_all_animation_classes);
+});
 
-function remove_all_animation_classes(){ // function to remove animation class
-    document.querySelectorAll('.letter').forEach((ele)=>{ele.classList.remove('bounce')})
+function remove_all_animation_classes() {
+    // function to remove animation class
+    document.querySelectorAll(".letter").forEach((ele) => {
+        ele.classList.remove("bounce");
+    });
 }
 
-function display_guessed_word(animate=false){
-    const guess_copy = [...guess] // copy of the guess array
-    
-    while(guess_copy.length < 5){
-        guess_copy.push('') // add blanks to fill up 5 elements in the array
+function display_guessed_word(animate = false) {
+    const guess_copy = [...guess]; // copy of the guess array
+
+    while (guess_copy.length < 5) {
+        guess_copy.push(""); // add blanks to fill up 5 elements in the array
     }
 
     //fill the current row boxes with letters and add animation class if required
-    document.querySelector(`#one_${round}`).innerText = guess_copy[0]
-    if(guess.length == 1 && animate){document.querySelector(`#one_${round}`).classList.add('bounce')}
+    document.querySelector(`#one_${round}`).innerText = guess_copy[0];
+    if (guess.length == 1 && animate) {
+        document.querySelector(`#one_${round}`).classList.add("bounce");
+    }
 
-    document.querySelector(`#two_${round}`).innerText = guess_copy[1]
-    if(guess.length == 2 && animate){document.querySelector(`#two_${round}`).classList.add('bounce')}
-    
-    document.querySelector(`#three_${round}`).innerText = guess_copy[2]
-    if(guess.length == 3 && animate){document.querySelector(`#three_${round}`).classList.add('bounce')}
+    document.querySelector(`#two_${round}`).innerText = guess_copy[1];
+    if (guess.length == 2 && animate) {
+        document.querySelector(`#two_${round}`).classList.add("bounce");
+    }
 
-    document.querySelector(`#four_${round}`).innerText = guess_copy[3]
-    if(guess.length == 4 && animate){document.querySelector(`#four_${round}`).classList.add('bounce')}
+    document.querySelector(`#three_${round}`).innerText = guess_copy[2];
+    if (guess.length == 3 && animate) {
+        document.querySelector(`#three_${round}`).classList.add("bounce");
+    }
 
-    document.querySelector(`#five_${round}`).innerText = guess_copy[4]
-    if(guess.length == 5 && animate){document.querySelector(`#five_${round}`).classList.add('bounce')}
+    document.querySelector(`#four_${round}`).innerText = guess_copy[3];
+    if (guess.length == 4 && animate) {
+        document.querySelector(`#four_${round}`).classList.add("bounce");
+    }
 
+    document.querySelector(`#five_${round}`).innerText = guess_copy[4];
+    if (guess.length == 5 && animate) {
+        document.querySelector(`#five_${round}`).classList.add("bounce");
+    }
 
     //add the full class (black outline and font color) for boxes that have a letter in them and remove for empty
 
-    for(let box in current_row){
-        if(box < guess.length){
-            current_row[box].classList.add('full')
+    for (let box in current_row) {
+        if (box < guess.length) {
+            current_row[box].classList.add("full");
         } else {
-            current_row[box].classList.remove('full')
+            current_row[box].classList.remove("full");
         }
     }
 }
 
-function update_current_row(){
+function update_current_row() {
     return [
         document.querySelector(`#one_${round}`),
         document.querySelector(`#two_${round}`),
         document.querySelector(`#three_${round}`),
         document.querySelector(`#four_${round}`),
-        document.querySelector(`#five_${round}`)
-    ]
+        document.querySelector(`#five_${round}`),
+    ];
 }
+
+function get_random_word(target_arry) {
+    
+    // this api is a random word generator which fetches a random word with the length of 5
+    fetch('https://random-word-api.herokuapp.com/word?length=5')
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        for(const letter of data[0]){ // pushes the random word into the "guess" array (all letters are individual array elements)
+            target_arry.push(letter);
+        } 
+        
+    })
+
+
+    //IF YOU WANT TO ADD THE WORD TO A LOCAL STORAGE AND DO SOMETHING WITH IT REPLACE THIS.
+
+    // const stored_random_word = localStorage.getItem("randomWord"); // grabs the item that is set in
+    // if (stored_random_word) {
+    //     for(const letter of stored_random_word){ // pushes the random word into the "guess" array
+    //         target_arry.push(letter);
+    //     } 
+    // } else {
+    //     
+    //     fetch("https://random-word-api.herokuapp.com/word?length=5")
+    //         .then((Response) => {
+    //             return Response.json(); // converts this to a javascript array
+    //         })
+    //         .then((data) => {
+    //             // sets the item to the local storage within the site, we can keep it there and update it weekly
+    //             localStorage.setItem("randomWord", data[0]);
+    //         });
+    // }
+
+}
+
+get_random_word(target_guess);
+
+
