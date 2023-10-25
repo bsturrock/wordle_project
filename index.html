@@ -11,13 +11,28 @@
         <nav class="nav-bar">
             <img class="logo"src="./assets/crossword_FILL1_wght400_GRAD0_opsz24.svg">
             <div class="title">Wordle</div>
-            <div class="right-side-icons">
+            <div class="right-side-btns">
                 <button class="leaderboard-btn"><img src="./assets/leaderboard_FILL0_wght400_GRAD0_opsz24.svg"></button>
                 <button class="question-btn"><img src="./assets/help_FILL0_wght400_GRAD0_opsz24.svg"></button>
                 <button class="settings-btn"><img src="./assets/settings_FILL1_wght400_GRAD0_opsz24.svg"></button>
             </div>
         </nav>
         <!-- <div class="space"></div> -->
+        <div class="button-containers">
+            <div id="leaderboard-container" class="btn-container">
+                <div class="leaderboard">
+                    <span class="close">&times;</span>
+                    <h2>Leaderboard</h2>
+                </div>
+            </div>
+            <div id="how-to-play-container" class="btn-container">
+                <div class="how-to-play">
+                    <span id="how-to-play-close" class="close">&times;</span>
+                    <h2>How to play</h2>
+                </div>
+            </div>
+        </div>
+        
         <div class="words">
             <div class="word">
                 <div id='one_1' class="letter"></div>
@@ -64,5 +79,6 @@
         </div>
         <!-- <div class="space"></div> -->
         <script src="index.js"></script>
+    </div>
 </body>
 </html>

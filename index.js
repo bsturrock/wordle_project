@@ -1,4 +1,7 @@
 const body = document.querySelector("body"); // body element of DOM
+const leaderboard_btn = document.querySelector('leaderboard-btn');
+const leaderboard_container = document.getElementById('leaderboard-container');
+const leaderboard_close = document.getElementById('leaderboard-close');
 const guess = []; // current word the user is guessing (all letters are individual array elements)
 const target_guess = []; // current word the user is trying to guess (all letters are individual array elements)
 let round = 1; // what row/guess the user is currently on
@@ -10,6 +13,19 @@ let current_row = [
     document.querySelector(`#four_${round}`),
     document.querySelector(`#five_${round}`),
 ];
+
+// leaderboard_btn.addEventListener('click', () => {
+//     document.querySelector('.btn-container').style.display = 'block';
+// });
+// leaderboard_close.addEventListener('click', () => {
+//     document.querySelector('.btn-container').style.display = 'none';
+// });
+
+// document.querySelectorAll(".close").forEach(() =>{
+//     close.style.display = 'none';
+// })
+
+
 
 body.addEventListener("keydown", (event) => {
 
