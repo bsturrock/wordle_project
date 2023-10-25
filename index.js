@@ -1,6 +1,9 @@
 const body = document.querySelector("body"); // body element of DOM
 const guess = []; // current word the user is guessing (all letters are individual array elements)
 const target_guess = []; // current word the user is trying to guess (all letters are individual array elements)
+
+let ready_to_guess = true
+
 let round = 1; // what row/guess the user is currently on
 let current_row = [
     // all boxes in the current row
@@ -12,6 +15,7 @@ let current_row = [
 ];
 
 body.addEventListener("keydown", (event) => {
+    if(!ready_to_guess){return}
 
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // if keydown is between A and Z keys and word isn't 5 letters
@@ -26,6 +30,13 @@ body.addEventListener("keydown", (event) => {
     }
 });
 
+function remove_all_animation_classes() {
+    // function to remove animation class
+    document.querySelectorAll(".letter").forEach((ele) => {
+        ele.classList.remove("bounce");
+    });
+}
+
 document.querySelectorAll(".letter").forEach((ele) => {
     // add event listener on all boxes to remove animation class after animation has ended
     ele.addEventListener("animationend", remove_all_animation_classes);
@@ -39,13 +50,14 @@ function new_round(){
 }
 
 function calculate(){
-
+    ready_to_guess = false
     const colors = []
     let correct = 0
 
     let target_letter_occurrences = letter_occurrences()
     let greens = green_instances()
 
+    console.log(target_guess)
 
 // First loop to look for correct spots and letters not in the word
     for(let index in guess){ 
@@ -71,12 +83,34 @@ function calculate(){
         }
     }
 
-    current_row[0].classList.add(colors[0])
-    current_row[1].classList.add(colors[1])
-    current_row[2].classList.add(colors[2])
-    current_row[3].classList.add(colors[3])
-    current_row[4].classList.add(colors[4])
 
+
+    current_row[0].querySelector('span').classList.add(colors[0])
+    current_row[1].querySelector('span').classList.add(colors[1])
+    current_row[2].querySelector('span').classList.add(colors[2])
+    current_row[3].querySelector('span').classList.add(colors[3])
+    current_row[4].querySelector('span').classList.add(colors[4])
+
+    delay = 0
+    old_row = [...current_row]
+
+    function add_anim(i){
+        old_row[i].querySelector('span').classList.add('scored')
+        console.log(old_row[i].querySelector('span'))
+        console.log('adding anim to ' + i)
+        if(i==4){
+            ready_to_guess = true
+        }
+    }
+
+    let i=0;
+    while(i<5){
+        setTimeout(add_anim,delay,i)
+        i++
+        delay+=400
+    }
+
+    
 }
 
 function green_instances(){ // initializes an object to track how many 'green' instances per letter there are
@@ -93,12 +127,7 @@ function letter_occurrences(){ // creates an object that counts how many instanc
     },{})
 }
 
-function remove_all_animation_classes() {
-    // function to remove animation class
-    document.querySelectorAll(".letter").forEach((ele) => {
-        ele.classList.remove("bounce");
-    });
-}
+
 
 function display_guessed_word(animate = false) {
     const guess_copy = [...guess]; // copy of the guess array
@@ -108,27 +137,27 @@ function display_guessed_word(animate = false) {
     }
 
     //fill the current row boxes with letters and add animation class if required
-    document.querySelector(`#one_${round}`).innerText = guess_copy[0];
+    current_row[0].querySelector('span').innerText = guess_copy[0];
     if (guess.length == 1 && animate) {
         document.querySelector(`#one_${round}`).classList.add("bounce");
     }
 
-    document.querySelector(`#two_${round}`).innerText = guess_copy[1];
+    current_row[1].querySelector('span').innerText = guess_copy[1];
     if (guess.length == 2 && animate) {
         document.querySelector(`#two_${round}`).classList.add("bounce");
     }
 
-    document.querySelector(`#three_${round}`).innerText = guess_copy[2];
+    current_row[2].querySelector('span').innerText = guess_copy[2];
     if (guess.length == 3 && animate) {
         document.querySelector(`#three_${round}`).classList.add("bounce");
     }
 
-    document.querySelector(`#four_${round}`).innerText = guess_copy[3];
+    current_row[3].querySelector('span').innerText = guess_copy[3];
     if (guess.length == 4 && animate) {
         document.querySelector(`#four_${round}`).classList.add("bounce");
     }
 
-    document.querySelector(`#five_${round}`).innerText = guess_copy[4];
+    current_row[4].querySelector('span').innerText = guess_copy[4];
     if (guess.length == 5 && animate) {
         document.querySelector(`#five_${round}`).classList.add("bounce");
     }
