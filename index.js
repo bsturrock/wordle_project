@@ -162,7 +162,7 @@ function get_random_word(target_arry) {
         return res.json();
     })
     .then(data => {
-        for(const letter of data[0]){ // pushes the random word into the "guess" array (all letters are individual array elements)
+        for(const letter of data[0]){ 
             target_arry.push(letter);
         } 
         
