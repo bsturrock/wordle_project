@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
 * {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -8,6 +9,68 @@
                 user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
 }
+
+
+body{
+    margin: 0;
+}
+
+
+.nav-bar{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: 1.4s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+    animation-delay: 0s;
+}
+.logo{
+
+    padding-left: 150px;
+    padding-right: 5px;
+}
+.title {
+    
+    font-size: x-large;
+    font-family: 'Ubuntu', sans-serif;
+}
+.right-side-icons{
+    margin-left: auto;
+    padding-right: 100px;
+    display: flex;
+    
+}
+.question-btn, .leaderboard-btn, .settings-btn{
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+}
+
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes slideUp{
+    0% {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
 
 .word {
     display: flex;
@@ -23,12 +86,11 @@
     border: 2px solid rgb(170,170,170);
     color: rgb(50, 50, 50);
     margin: 5px;
-
 }
 
 .letter span {
     text-align: center;
-    font-family: "Menlo", "Helvetica";
+    font-family: 'Ubuntu', sans-serif;
     font-size: 70px;
     text-transform: uppercase;
     margin: auto;
@@ -112,10 +174,13 @@
 .words {
     margin: auto;
     flex: 4;
+    animation: 1.4s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideUp;
+    animation-delay: 0s;
 }
 
 .container{
     display: flex;
+    flex-direction: column;
 }
 
 .space {
@@ -152,4 +217,28 @@
     background-color: rgb(60, 60, 60) !important;
     color: white !important;
     border: 2px solid rgb(60,60,60) !important;
-} */
+}
+
+
+@media screen and (max-width: 768px) {
+    .nav-bar {
+        height: 60px; 
+        margin-bottom: 10px; 
+    }
+
+    .logo {
+        padding-left: 5px;
+        padding-right: 5px; 
+    }
+
+    .title {
+        font-size: medium;
+    }
+
+    .letter {
+        padding-top: 20px;
+        width: 60px; 
+        height: 50px; 
+        font-size: 30px; 
+    }
+}
