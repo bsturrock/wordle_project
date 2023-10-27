@@ -124,18 +124,24 @@ body{
 h2{
     text-align: center;
     
+    
 }
 h3{
     margin-top: 50px;
     margin-bottom: 0;
+
 }
 ul{
     padding-left: 20px;
+    color: rgb(68, 68, 68);
     
 }
 li{
     padding-bottom: 5px;
     font-weight: lighter;
+}
+.examples{
+    padding-bottom: 10px;
 }
 .con-letters{
     width: 35px;
@@ -156,12 +162,10 @@ li{
     
     
 }
-.grey{
-    background-color: rgb(50, 50, 50);
-}
-
-.green{
-    background-color: green;
+.example-text{
+    padding-bottom: 35px;
+    padding-top: 8px;
+    color: rgb(48, 48, 48);
 }
 
 .animation{

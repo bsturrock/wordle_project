@@ -17,7 +17,7 @@ let current_row = [
     document.querySelector(`#five_${round}`),
 ];
 
-let text = ["s", "p", "e", "n", "t"];
+let text = ["w", "a", "t", "e", "r","E","A","R","T","H","A","P","P","L","E"];
 const typing_Text = [];
 let current_Index = 0;
 let animation_Interval;
@@ -39,11 +39,11 @@ function typeTextElement(element) {
 function start_Typing_Animation() {
     animation_Interval = setInterval(function () {
         typeTextElement(typing_Text[current_Index]);
-    }, 600);
+    }, 300);
     setTimeout(function () {
         clearInterval(animation_Interval);
-        typing_Text[0].classList.add = ('green');
-    }, 3500);
+        
+    }, 4500);
 }
 
 function stop_Typing_Animation() {
