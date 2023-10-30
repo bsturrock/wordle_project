@@ -9,7 +9,6 @@ const typingText7 = document.getElementById("typing-text-7");
 const close_btn = document.querySelectorAll(".close");
 const guess = []; // current word the user is guessing (all letters are individual array elements)
 const target_guess = []; // current word the user is trying to guess (all letters are individual array elements)
-console.log(target_guess);
 let ready_to_guess = true;
 
 let round = 1; // what row/guess the user is currently on
