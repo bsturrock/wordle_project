@@ -1,126 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle Game</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <nav class="nav-bar">
-            <img class="logo"src="./assets/crossword_FILL1_wght400_GRAD0_opsz24.svg">
-            <div class="title">Wordle</div>
-            <div class="right-side-btns">
-                <button class="leaderboard-btn"><img src="./assets/leaderboard_FILL0_wght400_GRAD0_opsz24.svg"></button>
-                <button class="question-btn"><img src="./assets/help_FILL0_wght400_GRAD0_opsz24.svg"></button>
-                <button class="settings-btn"><img src="./assets/settings_FILL1_wght400_GRAD0_opsz24.svg"></button>
-            </div>
-        </nav>
-        <!-- <div class="space"></div> -->
-        <div class="button-containers">
-            <div id="leaderboard-container" class="btn-container">
-                <div class="leaderboard">
-                    <span class="close">&times;</span>
-                    <h2>Leaderboard</h2>
-                    <table class="table">
-                        <tr class="table-info">
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Score</th>
-                        </tr>
-                        <tbody class="table-body">
-
-                        </tbody>
-                    </table>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wordle Game</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav-bar">
+                <img
+                    class="logo"
+                    src="./assets/crossword_FILL1_wght400_GRAD0_opsz24.svg"
+                />
+                <div class="title">Wordle</div>
+                <div class="right-side-btns">
+                    <button class="leaderboard-btn">
+                        <img
+                            src="./assets/leaderboard_FILL0_wght400_GRAD0_opsz24.svg"
+                        />
+                    </button>
+                    <button class="question-btn">
+                        <img
+                            src="./assets/help_FILL0_wght400_GRAD0_opsz24.svg"
+                        />
+                    </button>
+                    <button class="settings-btn">
+                        <img
+                            src="./assets/settings_FILL1_wght400_GRAD0_opsz24.svg"
+                        />
+                    </button>
+                </div>
+            </nav>
+            <!-- <div class="space"></div> -->
+            <div class="button-containers">
+                <div id="leaderboard-container" class="btn-container">
+                    <div class="leaderboard">
+                        <span class="close">&times;</span>
+                        <h2>Leaderboard</h2>
+                        <table class="table">
+                            <tr class="table-info">
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Score</th>
+                            </tr>
+                            <tbody class="table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="how-to-play-container" class="btn-container">
+                    <span id="how-to-play-close" class="close">&times;</span>
+                    <div class="how-to-play">
+                        <h2>How to play</h2>
+                        <h3>Guess the Wordle in 6 tries.</h3>
+                        <ul>
+                            <li>Each guess must be a valid 5-letter word.</li>
+                            <li>
+                                The color of the tiles will change to show how
+                                close your guess was to the word.
+                            </li>
+                        </ul>
+                        <div class="examples"><strong>Examples</strong></div>
+                        <div class="htp-letters">
+                            <div class="con-letters">
+                                <div id="typing-text-1"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-2"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-3"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-4"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-5"></div>
+                            </div>
+                        </div>
+                        <div class="example-text">
+                            <strong>W</strong> is in the word and in the correct
+                            spot.
+                        </div>
+                        <div class="htp-letters">
+                            <div class="con-letters">
+                                <div id="typing-text-6"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-7"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-8"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-9"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-10"></div>
+                            </div>
+                        </div>
+                        <div class="example-text">
+                            <strong>A</strong> is in the word but in the wrong
+                            spot.
+                        </div>
+                        <div class="htp-letters">
+                            <div class="con-letters">
+                                <div id="typing-text-11"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-12"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-13"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-14"></div>
+                            </div>
+                            <div class="con-letters">
+                                <div id="typing-text-15"></div>
+                            </div>
+                        </div>
+                        <div class="example-text">
+                            <strong>P</strong> is not in the word in any spot.
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="how-to-play-container" class="btn-container">
-                <span id="how-to-play-close" class="close">&times;</span>
-                <div class="how-to-play">
-                    <h2>How to play</h2>
-                    <h3>Guess the Wordle in 6 tries.</h3>
-                    <ul>
-                        <li>Each guess must be a valid 5-letter word.</li>
-                        <li>The color of the tiles will change to show how close your guess was to the word.</li>
-                    </ul>
-                    <div class="examples"><strong>Examples</strong></div>
-                    <div class="htp-letters">
-                        <div class="con-letters"><div id="typing-text-1"></div></div>
-                        <div class="con-letters"><div id="typing-text-2"></div></div>
-                        <div class="con-letters"><div id="typing-text-3"></div></div>
-                        <div class="con-letters"><div id="typing-text-4"></div></div>
-                        <div class="con-letters"><div id="typing-text-5"></div></div>
-                    </div>
-                    <div class="example-text"><strong>W</strong> is in the word and in the correct spot.</div>
-                    <div class="htp-letters">
-                        <div class="con-letters"><div id="typing-text-6"></div></div>
-                        <div class="con-letters"><div id="typing-text-7"></div></div>
-                        <div class="con-letters"><div id="typing-text-8"></div></div>
-                        <div class="con-letters"><div id="typing-text-9"></div></div>
-                        <div class="con-letters"><div id="typing-text-10"></div></div>
-                    </div>
-                    <div class="example-text"><strong>A</strong> is in the word but in the wrong spot.</div>
-                    <div class="htp-letters">
-                        <div class="con-letters"><div id="typing-text-11"></div></div>
-                        <div class="con-letters"><div id="typing-text-12"></div></div>
-                        <div class="con-letters"><div id="typing-text-13"></div></div>
-                        <div class="con-letters"><div id="typing-text-14"></div></div>
-                        <div class="con-letters"><div id="typing-text-15"></div></div>
-                    </div>
-                    <div class="example-text"><strong>P</strong> is not in the word in any spot.</div>
 
-
+            <div class="words">
+                <div class="word">
+                    <div id="one_1" class="letter"><span></span></div>
+                    <div id="two_1" class="letter"><span></span></div>
+                    <div id="three_1" class="letter"><span></span></div>
+                    <div id="four_1" class="letter"><span></span></div>
+                    <div id="five_1" class="letter"><span></span></div>
+                </div>
+                <div class="word">
+                    <div id="one_2" class="letter"><span></span></div>
+                    <div id="two_2" class="letter"><span></span></div>
+                    <div id="three_2" class="letter"><span></span></div>
+                    <div id="four_2" class="letter"><span></span></div>
+                    <div id="five_2" class="letter"><span></span></div>
+                </div>
+                <div class="word">
+                    <div id="one_3" class="letter"><span></span></div>
+                    <div id="two_3" class="letter"><span></span></div>
+                    <div id="three_3" class="letter"><span></span></div>
+                    <div id="four_3" class="letter"><span></span></div>
+                    <div id="five_3" class="letter"><span></span></div>
+                </div>
+                <div class="word">
+                    <div id="one_4" class="letter"><span></span></div>
+                    <div id="two_4" class="letter"><span></span></div>
+                    <div id="three_4" class="letter"><span></span></div>
+                    <div id="four_4" class="letter"><span></span></div>
+                    <div id="five_4" class="letter"><span></span></div>
+                </div>
+                <div class="word">
+                    <div id="one_5" class="letter"><span></span></div>
+                    <div id="two_5" class="letter"><span></span></div>
+                    <div id="three_5" class="letter"><span></span></div>
+                    <div id="four_5" class="letter"><span></span></div>
+                    <div id="five_5" class="letter"><span></span></div>
+                </div>
+                <div class="word">
+                    <div id="one_6" class="letter"><span></span></div>
+                    <div id="two_6" class="letter"><span></span></div>
+                    <div id="three_6" class="letter"><span></span></div>
+                    <div id="four_6" class="letter"><span></span></div>
+                    <div id="five_6" class="letter"><span></span></div>
                 </div>
             </div>
+            <!-- <div class="space"></div> -->
+            <script src="index.js"></script>
         </div>
-        
-        <div class="words">
-            <div class="word">
-                <div id='one_1' class="letter"><span></span></div>
-                <div id='two_1' class="letter"><span></span></div>
-                <div id='three_1' class="letter"><span></span></div>
-                <div id='four_1' class="letter"><span></span></div>
-                <div id='five_1' class="letter"><span></span></div>
-            </div>
-            <div class="word">
-                <div id='one_2' class="letter"><span></span></div>
-                <div id='two_2' class="letter"><span></span></div>
-                <div id='three_2' class="letter"><span></span></div>
-                <div id='four_2' class="letter" ><span></span></div>
-                <div id='five_2' class="letter" ><span></span></div>
-            </div>
-            <div class="word">
-                <div id='one_3' class="letter"><span></span></div>
-                <div id='two_3' class="letter"><span></span></div>
-                <div id='three_3' class="letter"><span></span></div>
-                <div id='four_3' class="letter" ><span></span></div>
-                <div id='five_3' class="letter" ><span></span></div>
-            </div>
-            <div class="word">
-                <div id='one_4' class="letter"><span></span></div>
-                <div id='two_4' class="letter"><span></span></div>
-                <div id='three_4' class="letter"><span></span></div>
-                <div id='four_4' class="letter" ><span></span></div>
-                <div id='five_4' class="letter" ><span></span></div>
-            </div>
-            <div class="word">
-                <div id='one_5' class="letter"><span></span></div>
-                <div id='two_5' class="letter"><span></span></div>
-                <div id='three_5' class="letter"><span></span></div>
-                <div id='four_5' class="letter" ><span></span></div>
-                <div id='five_5' class="letter" ><span></span></div>
-            </div>
-            <div class="word">
-                <div id='one_6' class="letter"><span></span></div>
-                <div id='two_6' class="letter"><span></span></div>
-                <div id='three_6' class="letter"><span></span></div>
-                <div id='four_6' class="letter" ><span></span></div>
-                <div id='five_6' class="letter" ><span></span></div>
-            </div>
-        </div>
-        <!-- <div class="space"></div> -->
-        <script src="index.js"></script>
-    </div>
-</body>
+    </body>
 </html>
