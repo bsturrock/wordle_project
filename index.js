@@ -17,7 +17,7 @@ let current_row = [
     document.querySelector(`#five_${round}`),
 ];
 
-let text = ["w", "a", "t", "e", "r","E","A","R","T","H","A","P","P","L","E"];
+let text = ["W", "A", "T", "E", "R","E","A","R","T","H","A","P","P","L","E"];
 const typing_Text = [];
 let current_Index = 0;
 let animation_Interval;
