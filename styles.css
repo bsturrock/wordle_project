@@ -1,22 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap");
 
 * {
     -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-        -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-                user-select: none; /* Non-prefixed version, currently
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
+    font-family: "Ubuntu", sans-serif;
 }
 
-
-body{
+body {
     margin: 0;
 }
 
-
-.nav-bar{
+.nav-bar {
     display: flex;
     align-items: center;
     height: 80px;
@@ -25,28 +24,39 @@ body{
     animation: 1.4s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
     animation-delay: 0s;
 }
-.logo{
-
+.logo {
     padding-left: 150px;
     padding-right: 5px;
 }
 .title {
-    
     font-size: x-large;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
-.right-side-icons{
+.right-side-btns {
     margin-left: auto;
     padding-right: 100px;
     display: flex;
-    
 }
-.question-btn, .leaderboard-btn, .settings-btn{
+.question-btn,
+.leaderboard-btn,
+.settings-btn {
     cursor: pointer;
     background-color: inherit;
     border: none;
 }
 
+.fade {
+    animation: fade 2s ease-in-out;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 @keyframes slideDown {
     0% {
@@ -58,7 +68,7 @@ body{
         transform: translateX(0);
     }
 }
-@keyframes slideUp{
+@keyframes slideUp {
     0% {
         opacity: 0;
         transform: translateY(35px);
@@ -69,28 +79,122 @@ body{
     }
 }
 
+.btn-container {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    margin-top: 100px;
+    animation: 0.5s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+    animation-delay: 0s;
+    top: 0;
+    left: 35%;
+    width: 30%;
+    height: 65%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: center;
+}
 
+.button-containers {
+    background-color: black;
+}
 
+.leaderboard {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+.how-to-play {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.htp-letters {
+    display: flex;
+    perspective: 1000px;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+ul {
+    padding-left: 20px;
+    color: rgb(68, 68, 68);
+}
+
+li {
+    padding-bottom: 5px;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.examples {
+    padding-bottom: 10px;
+}
+.con-letters {
+    width: 35px;
+    height: 35px;
+    border: 2px solid rgb(68, 67, 67);
+    color: rgb(50, 50, 50);
+    text-align: center;
+    margin: 1px;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.typing-text {
+    white-space: nowrap;
+    overflow: hidden;
+}
+.example-text {
+    padding-bottom: 35px;
+    padding-top: 8px;
+    color: rgb(48, 48, 48);
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
 
 .word {
     display: flex;
     flex-direction: row;
     margin: auto;
     width: min-content;
-
 }
 
 .letter {
     width: 80px;
     height: 80px;
-    border: 2px solid rgb(170,170,170);
+    border: 2px solid rgb(170, 170, 170);
     color: rgb(50, 50, 50);
     margin: 5px;
 }
 
 .letter span {
     text-align: center;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
     font-size: 70px;
     text-transform: uppercase;
     margin: auto;
@@ -99,13 +203,13 @@ body{
     position: relative;
 }
 
-.scored{
+.scored {
     position: relative;
     color: white;
 }
 
-.scored.green::after{
-    content: '';
+.scored.green::after {
+    content: "";
     z-index: -9;
     min-width: 84px;
     max-width: 84px;
@@ -116,13 +220,12 @@ body{
     left: -2px;
     top: 50%;
     animation-name: show;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-
 }
-.scored.yellow::after{
-    content: '';
+.scored.yellow::after {
+    content: "";
     z-index: -9;
     min-width: 84px;
     max-width: 84px;
@@ -133,13 +236,12 @@ body{
     left: -2px;
     top: 50%;
     animation-name: show;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-
 }
-.scored.gray::after{
-    content: '';
+.scored.gray::after {
+    content: "";
     z-index: -9;
     min-width: 84px;
     max-width: 84px;
@@ -150,16 +252,15 @@ body{
     left: -2px;
     top: 50%;
     animation-name: show;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-
 }
 @keyframes show {
     0% {
         height: 0px;
     }
-    100%{
+    100% {
         height: 84px;
         min-height: 84px;
         transform: translateY(0%);
@@ -168,7 +269,7 @@ body{
 }
 
 .full {
-    border: 2px solid rgb(50,50,50);
+    border: 2px solid rgb(50, 50, 50);
 }
 
 .words {
@@ -178,7 +279,7 @@ body{
     animation-delay: 0s;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
 }
@@ -191,17 +292,23 @@ body{
 
 .bounce {
     animation-name: bounce;
-    animation-duration: .15s;
+    animation-duration: 0.15s;
     animation-iteration-count: 1;
 }
 
 @keyframes bounce {
-    0% {transform: scale(1,1)}
-    75% {transform: scale(1.1, 1.1)}
-    100% {transform: scale(1,1)}
+    0% {
+        transform: scale(1, 1);
+    }
+    75% {
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
 }
 
-/* .green {
+.green {
     background-color: green !important;
     color: white !important;
     border: 2px solid green !important;
@@ -214,21 +321,24 @@ body{
 }
 
 .gray {
-    background-color: rgb(60, 60, 60) !important;
+    background-color: #3c3c3c !important;
     color: white !important;
-    border: 2px solid rgb(60,60,60) !important;
+    border: 2px solid rgb(60, 60, 60) !important;
 }
-
 
 @media screen and (max-width: 768px) {
     .nav-bar {
-        height: 60px; 
-        margin-bottom: 10px; 
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .right-side-btns {
+        padding-right: 5px;
     }
 
     .logo {
         padding-left: 5px;
-        padding-right: 5px; 
+        padding-right: 5px;
     }
 
     .title {
@@ -236,9 +346,8 @@ body{
     }
 
     .letter {
-        padding-top: 20px;
-        width: 60px; 
-        height: 50px; 
-        font-size: 30px; 
+        width: 60px;
+        height: 60px;
+        font-size: 50px;
     }
 }
