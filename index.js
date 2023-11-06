@@ -33,8 +33,10 @@ let current_row = [
 body.addEventListener("keydown", (event) => {
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // Add a letter to the guess
-        guess.push(event.key);
-        display_guessed_word(true); // Animate if true
+        if(ready_to_guess){
+            guess.push(event.key);
+            display_guessed_word(true); // Animate if true
+        }
     } else if (event.code == "Backspace" && guess.length > 0) {
         // Remove the last letter from the guess
         guess.pop();
