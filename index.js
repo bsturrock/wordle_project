@@ -129,8 +129,11 @@ function new_round() {
     current_row = update_current_row();
     guess.length = 0;
     if (round === 7) {
-        lose.style.display = "block";
-        body.classList.add("background");
+        setTimeout(()=>{
+            lose.style.display = "block";
+            body.classList.add("background");
+        },2000)
+
     }
 }
 
@@ -173,13 +176,7 @@ function calculate() {
     //     current_row[index].classList.add(colors[index]);
     // }
 
-    // Check for a win condition
-    if (colors.every((color) => color === "green")) {
-        win.style.display = "block";
-        body.classList.add("background");
-        return true;
-    }
-
+    
 
     current_row[0].querySelector('span').classList.add(colors[0])
     current_row[1].querySelector('span').classList.add(colors[1])
@@ -204,6 +201,12 @@ function calculate() {
         setTimeout(add_anim,delay,i)
         i++
         delay+=400
+    }
+
+    // Check for a win condition with delay
+    if (colors.every((color) => color === "green")) {
+        setTimeout(()=>{win.style.display = "block";body.classList.add("background");},delay)
+        return true;
     }
 }
     
