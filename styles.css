@@ -349,24 +349,6 @@ li {
     }
 }
 
-.green {
-    background-color: green !important;
-    color: white !important;
-    border: 2px solid green !important;
-}
-
-.yellow {
-    background-color: goldenrod !important;
-    color: white !important;
-    border: 2px solid goldenrod !important;
-}
-
-.gray {
-    background-color: #3c3c3c !important;
-    color: white !important;
-    border: 2px solid rgb(60, 60, 60) !important;
-}
-
 @media screen and (max-width: 768px) {
     .btn-container {
         
@@ -392,11 +374,27 @@ li {
         font-size: medium;
     }
 
+    .scored.green::after,
+    .scored.yellow::after,
+    .scored.gray::after {
+        min-width: 64px !important;
+        max-width: 60px !important;
+        max-height: 63px !important;
+        min-height: 0px !important;
+       
+    }
+
     .letter {
         
         width: 60px;
         height: 60px;
-        font-size: 20px;
+        
+    }
+
+    .letter span{
+        width: 60px;
+        height: 60px;
+        font-size: 55px;
     }
 
     .win,.lose {

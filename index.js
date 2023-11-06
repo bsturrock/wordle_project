@@ -20,14 +20,23 @@ const target_guess = [];
 // Flags and counters
 let ready_to_guess = true;
 let round = 1;
-let current_row = update_current_row();
+let current_row = [
+    // all boxes in the current row
+    document.querySelector(`#one_${round}`),
+    document.querySelector(`#two_${round}`),
+    document.querySelector(`#three_${round}`),
+    document.querySelector(`#four_${round}`),
+    document.querySelector(`#five_${round}`),
+];
 
 // Event listener for keyboard input
 body.addEventListener("keydown", (event) => {
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // Add a letter to the guess
-        guess.push(event.key);
-        display_guessed_word(true); // Animate if true
+        if(ready_to_guess){
+            guess.push(event.key);
+            display_guessed_word(true); // Animate if true
+        }
     } else if (event.code == "Backspace" && guess.length > 0) {
         // Remove the last letter from the guess
         guess.pop();
@@ -43,14 +52,15 @@ body.addEventListener("keydown", (event) => {
 // Event listeners for "Play Again" buttons
 againWin.addEventListener("click", () => {
     // Reset the game for a win
-    resetGame();
     win.style.display = "none";
+    resetGame();
 });
 
 againLose.addEventListener("click", () => {
     // Reset the game for a loss
-    resetGame();
+
     lose.style.display = "none";
+    resetGame();
 });
 
 function resetGame() {
@@ -70,8 +80,11 @@ function resetGame() {
 
 // Function to clear color classes on letters
 function clear_colors() {
+    document.querySelectorAll("span").forEach((ele) => {
+        ele.classList.remove("scored", "green", "yellow", "gray");
+    });
     document.querySelectorAll(".letter").forEach((ele) => {
-        ele.classList.remove("green", "yellow", "gray");
+        ele.classList.remove("full", "green", "yellow", "gray");
     });
 }
 
@@ -118,13 +131,17 @@ function new_round() {
     current_row = update_current_row();
     guess.length = 0;
     if (round === 7) {
-        lose.style.display = "block";
-        body.classList.add("background");
+        setTimeout(()=>{
+            lose.style.display = "block";
+            body.classList.add("background");
+        },2000)
+
     }
 }
 
 // Function to calculate feedback for the user's guess
 function calculate() {
+    ready_to_guess = false
     const colors = [];
     let correct = 0;
     let target_letter_occurrences = letter_occurrences();
@@ -155,19 +172,46 @@ function calculate() {
             }
         }
     }
-
     // Apply colors to the letter elements
-    for (let index in guess) {
-        current_row[index].classList.add(colors[index]);
+    // irrevelant now as colors are applied to spans not divs
+    // for (let index in guess) {
+    //     current_row[index].classList.add(colors[index]);
+    // }
+
+    
+
+    current_row[0].querySelector('span').classList.add(colors[0])
+    current_row[1].querySelector('span').classList.add(colors[1])
+    current_row[2].querySelector('span').classList.add(colors[2])
+    current_row[3].querySelector('span').classList.add(colors[3])
+    current_row[4].querySelector('span').classList.add(colors[4])
+
+    delay = 0
+    old_row = [...current_row]
+
+    function add_anim(i){
+        old_row[i].querySelector('span').classList.add('scored')
+        console.log(old_row[i].querySelector('span'))
+        console.log('adding anim to ' + i)
+        if(i==4){
+            ready_to_guess = true
+        }
     }
 
-    // Check for a win condition
+    let i=0;
+    while(i<5){
+        setTimeout(add_anim,delay,i)
+        i++
+        delay+=400
+    }
+
+    // Check for a win condition with delay
     if (colors.every((color) => color === "green")) {
-        win.style.display = "block";
-        body.classList.add("background");
+        setTimeout(()=>{win.style.display = "block";body.classList.add("background");},delay)
         return true;
     }
 }
+    
 
 // Function to initialize green instances
 function green_instances() {
@@ -187,18 +231,39 @@ function letter_occurrences() {
 
 // Function to display the guessed word
 function display_guessed_word(animate = false) {
-    const guess_copy = [...guess];
+    const guess_copy = [...guess]; // copy of the guess array
 
     while (guess_copy.length < 5) {
-        guess_copy.push("");
+        guess_copy.push(""); // add blanks to fill up 5 elements in the array
     }
 
-    for (let i = 0; i < 5; i++) {
-        current_row[i].querySelector("span").innerText = guess_copy[i];
-        if (guess.length === i + 1 && animate) {
-            current_row[i].classList.add("bounce");
-        }
+    //fill the current row boxes with letters and add animation class if required
+    current_row[0].querySelector('span').innerText = guess_copy[0];
+    if (guess.length == 1 && animate) {
+        document.querySelector(`#one_${round}`).classList.add("bounce");
     }
+
+    current_row[1].querySelector('span').innerText = guess_copy[1];
+    if (guess.length == 2 && animate) {
+        document.querySelector(`#two_${round}`).classList.add("bounce");
+    }
+
+    current_row[2].querySelector('span').innerText = guess_copy[2];
+    if (guess.length == 3 && animate) {
+        document.querySelector(`#three_${round}`).classList.add("bounce");
+    }
+
+    current_row[3].querySelector('span').innerText = guess_copy[3];
+    if (guess.length == 4 && animate) {
+        document.querySelector(`#four_${round}`).classList.add("bounce");
+    }
+
+    current_row[4].querySelector('span').innerText = guess_copy[4];
+    if (guess.length == 5 && animate) {
+        document.querySelector(`#five_${round}`).classList.add("bounce");
+    }
+
+    //add the full class (black outline and font color) for boxes that have a letter in them and remove for empty
 
     for (let box in current_row) {
         if (box < guess.length) {
