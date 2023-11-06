@@ -81,6 +81,9 @@ function clear_colors() {
     document.querySelectorAll("span").forEach((ele) => {
         ele.classList.remove("scored", "green", "yellow", "gray");
     });
+    document.querySelectorAll(".letter").forEach((ele) => {
+        ele.classList.remove("full", "green", "yellow", "gray");
+    });
 }
 
 // Function to clear letter content
@@ -165,9 +168,10 @@ function calculate() {
         }
     }
     // Apply colors to the letter elements
-    for (let index in guess) {
-        current_row[index].classList.add(colors[index]);
-    }
+    // irrevelant now as colors are applied to spans not divs
+    // for (let index in guess) {
+    //     current_row[index].classList.add(colors[index]);
+    // }
 
     // Check for a win condition
     if (colors.every((color) => color === "green")) {
