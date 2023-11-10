@@ -33,7 +33,7 @@ let current_row = [
 body.addEventListener("keydown", (event) => {
     if (event.code.slice(0, 3) == "Key" && guess.length < 5) {
         // Add a letter to the guess
-        if(ready_to_guess){
+        if (ready_to_guess) {
             guess.push(event.key);
             display_guessed_word(true); // Animate if true
         }
@@ -116,7 +116,7 @@ function get_random_word(target_array) {
             let joinedTargetGuess = target_array.join("");
             correctWordWin.innerHTML = joinedTargetGuess.toUpperCase();
             correctWordLose.innerHTML = joinedTargetGuess.toUpperCase();
-            console.log(joinedTargetGuess)
+            console.log(joinedTargetGuess);
         })
         .catch((error) => {
             console.error("Error fetching data: ", error);
@@ -131,17 +131,16 @@ function new_round() {
     current_row = update_current_row();
     guess.length = 0;
     if (round === 7) {
-        setTimeout(()=>{
+        setTimeout(() => {
             lose.style.display = "block";
             body.classList.add("background");
-        },2000)
-
+        }, 2000);
     }
 }
 
 // Function to calculate feedback for the user's guess
 function calculate() {
-    ready_to_guess = false
+    ready_to_guess = false;
     const colors = [];
     let correct = 0;
     let target_letter_occurrences = letter_occurrences();
@@ -178,40 +177,39 @@ function calculate() {
     //     current_row[index].classList.add(colors[index]);
     // }
 
-    
+    current_row[0].querySelector("span").classList.add(colors[0]);
+    current_row[1].querySelector("span").classList.add(colors[1]);
+    current_row[2].querySelector("span").classList.add(colors[2]);
+    current_row[3].querySelector("span").classList.add(colors[3]);
+    current_row[4].querySelector("span").classList.add(colors[4]);
 
-    current_row[0].querySelector('span').classList.add(colors[0])
-    current_row[1].querySelector('span').classList.add(colors[1])
-    current_row[2].querySelector('span').classList.add(colors[2])
-    current_row[3].querySelector('span').classList.add(colors[3])
-    current_row[4].querySelector('span').classList.add(colors[4])
+    delay = 0;
+    old_row = [...current_row];
 
-    delay = 0
-    old_row = [...current_row]
-
-    function add_anim(i){
-        old_row[i].querySelector('span').classList.add('scored')
-        console.log(old_row[i].querySelector('span'))
-        console.log('adding anim to ' + i)
-        if(i==4){
-            ready_to_guess = true
+    function add_anim(i) {
+        old_row[i].querySelector("span").classList.add("scored");
+        
+        if (i == 4) {
+            ready_to_guess = true;
         }
     }
 
-    let i=0;
-    while(i<5){
-        setTimeout(add_anim,delay,i)
-        i++
-        delay+=400
+    let i = 0;
+    while (i < 5) {
+        setTimeout(add_anim, delay, i);
+        i++;
+        delay += 400;
     }
 
     // Check for a win condition with delay
     if (colors.every((color) => color === "green")) {
-        setTimeout(()=>{win.style.display = "block";body.classList.add("background");},delay)
+        setTimeout(() => {
+            win.style.display = "block";
+            body.classList.add("background");
+        }, delay);
         return true;
     }
 }
-    
 
 // Function to initialize green instances
 function green_instances() {
@@ -238,27 +236,27 @@ function display_guessed_word(animate = false) {
     }
 
     //fill the current row boxes with letters and add animation class if required
-    current_row[0].querySelector('span').innerText = guess_copy[0];
+    current_row[0].querySelector("span").innerText = guess_copy[0];
     if (guess.length == 1 && animate) {
         document.querySelector(`#one_${round}`).classList.add("bounce");
     }
 
-    current_row[1].querySelector('span').innerText = guess_copy[1];
+    current_row[1].querySelector("span").innerText = guess_copy[1];
     if (guess.length == 2 && animate) {
         document.querySelector(`#two_${round}`).classList.add("bounce");
     }
 
-    current_row[2].querySelector('span').innerText = guess_copy[2];
+    current_row[2].querySelector("span").innerText = guess_copy[2];
     if (guess.length == 3 && animate) {
         document.querySelector(`#three_${round}`).classList.add("bounce");
     }
 
-    current_row[3].querySelector('span').innerText = guess_copy[3];
+    current_row[3].querySelector("span").innerText = guess_copy[3];
     if (guess.length == 4 && animate) {
         document.querySelector(`#four_${round}`).classList.add("bounce");
     }
 
-    current_row[4].querySelector('span').innerText = guess_copy[4];
+    current_row[4].querySelector("span").innerText = guess_copy[4];
     if (guess.length == 5 && animate) {
         document.querySelector(`#five_${round}`).classList.add("bounce");
     }
